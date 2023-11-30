@@ -1,0 +1,214 @@
+/* Styles created by Matthew Mayer for Playhouse Academy 11/2020.
+   Color Palette: Defined by Client */
+
+/* Site Variables */
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    :root {
+        /* Font declarations */
+        font-size: 16px;
+        --main-font: "ratio", sans-serif;
+        --font-weight-light: 300;
+        --font-weight-medium: 400;
+        --font-weight-strong: 500;
+        /* Color declarations */
+        --primary-orange: #eb9d3f;
+        --primary-purple: #8118b0;
+        --primary-red: #f12727;
+        --primary-navy: #002851;
+        --background-purple: #e6bafa;
+        --background-orange: #fad4a7;
+        --background-blue: #27b8f1;
+        --background-red: #f56363;
+        --white: white;
+        --white75: rgba(255, 255, 255, 0.75);
+        --alpha70: 0.7;
+        color: black;
+        margin: 0px;
+    }
+
+/* STRUCTURAL STYLES */
+ body {
+    font-family: var(--main-font);
+    font-weight: var(--font-weight-light);
+    background-color: var(--white);
+    padding: 0px;
+    margin: 0px;
+ }
+ header {
+    display: block;
+    width: 100%;
+    background-color: var(--primary-navy);
+    padding: 12px;
+ }
+ header img{
+   width: 250px;
+   margin-left: 1rem;
+   margin-top: .5rem;
+ }
+ nav {
+    display: inline-block;
+    position: absolute;
+    right: 4rem;
+ }
+ nav > ul {
+    display: flex;
+    width: 100%;
+ }
+ nav > ul > li {
+    color: var(--white);
+    padding: 12px;
+    list-style: none;
+    font-weight: var(--font-weight-strong);
+ }
+ main {
+    background-color: var(--white);
+    padding: 0px;
+    display: block;
+    color: black;
+ }
+ main > section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+    margin: auto;
+ }
+ main > section > div {
+    display: block;
+    padding: 9px;
+ }
+ footer {
+    display: flex;
+    padding: 20px;
+    background-color: var(--primary-purple);
+    width: 100%;
+    font-size: .75rem;
+ }
+
+ footer ul {
+   display: block; 
+   list-style: none;
+   margin-left: auto;
+   margin-right: 4rem;
+ }
+ footer a {
+   color: var(--primary-orange);
+ }
+footer a:hover {
+   color: var(--background-orange);
+}
+footer a:active {
+   color: var(--primary-red);
+ }
+
+/* SEMANTIC STYLES */
+ blockquote{
+    padding: 3% 10%;
+    font-size: .75rem;
+    font-weight: var(--font-weight-strong);
+    background-color: var(--background-purple);
+    margin: 12px 0px;
+ }
+ button{
+    margin: auto;
+    padding: 3px 16px;
+    background-color: var(--background-orange);
+    border: 0px;
+    margin-bottom: 9px;
+ }
+ dl{
+   display: flex;
+   align-items: flex-start;
+   padding-bottom: .25rem;
+ }
+ dt{
+   width: 55px;
+   text-align: right;
+   font-size: .9rem;
+   font-weight: var(--font-weight-strong);
+   padding-right: .5rem;
+ }
+ dd{
+   width: 85%;
+   text-align: justify;
+ }
+ h2{
+    font-weight: var(--font-weight-strong);
+    border-bottom: 1px solid black;
+    padding-bottom: 2px;
+    margin-bottom: 8px;
+ }
+ p {
+    margin-bottom: 9px;
+ }
+/* IDS AND CLASS DEFINITIONS */
+ .avatar {
+   width: 6rem;
+   border-width: 2px;
+   border-color: var(--primary-orange);
+   border-style: solid;
+ }
+ .featured-classes {
+   display: grid;
+   grid-template-columns: auto 3fr;
+   grid-template-areas:
+      "class-name class-name"
+      "instructor class-info";
+   grid-gap: 5px;
+   width: 65%;
+   margin-left: auto;
+   margin-right: auto;
+   padding: 1.5rem;
+   background-color:var(--white75);
+   border-radius: 25px;
+   border-width: 3px;
+   border-style: solid;
+   border-color: var(--primary-purple);
+ }
+ .featured-class-name{
+   grid-area: class-name;
+ }
+ .featured-instructor{
+   grid-area: instructor;
+ }
+ .featured-class-info{
+   grid-area: class-info;
+   padding-left: 35px;
+ }
+ #hero{
+   display: flex;
+   width: 101%;
+   background-color: var(--primary-navy);
+   background-image: url("images/snowflakebackground.svg");
+   background-size: cover;
+   padding-top: 1.5rem;
+   padding-bottom: 2.5rem;
+   margin-bottom: .75rem;
+   border-bottom: 6px solid var(--primary-orange)
+ }
+ #hero h1 {
+   font-size: 2.5rem;
+ }
+ #social-icons {
+    display: flex;
+ }
+ #social-icons > li {
+    font-size: 3.5rem;
+    color: var(--primary-orange);
+    padding: 0px 6px;
+ }
+ 
+/* Utility Classes */
+ .bold {
+    font-weight: var(--font-weight-strong);
+ }
+ .italic {
+    font-style: italic;
+ }
+ .floating {
+    float: left;
+    margin-right: 12px;
+    border: 3px solid var(--primary-purple);
+}
