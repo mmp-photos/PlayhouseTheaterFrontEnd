@@ -1,20 +1,15 @@
-import { useState } from 'react'
-import './assets/styles/styles.css'
-import Header from './components/Header';
-import Main from './components/Main';
-import Footer from './components/Footer';
 
+// IMPORTS //
+import React from 'react';
+import Homepage from './components/Homepage';
+
+// PAGE CONSTRUCTION START //
 function App() {
-
-  return (
-      <>
-        <Header />
-        <Main>
-        </Main>
-        <Footer>
-        </Footer>
-      </>
-  )
+    return (
+        <Homepage />
+  );
 }
+// PAGE CONSTRUCTION END //
 
-export default App
+// EXPORT STATEMENT //
+export default App;
