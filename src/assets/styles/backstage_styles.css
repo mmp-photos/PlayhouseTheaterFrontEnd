@@ -1,0 +1,66 @@
+/* Styles created by Matthew Mayer for Playhouse Academy 11/2020.
+   Color Palette: Defined by Client */
+
+/* Site Variables */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+:root {
+    /* Font declarations */
+    font-size: 16px;
+    --main-font: "ratio", sans-serif;
+    --font-weight-light: 300;
+    --font-weight-medium: 400;
+    --font-weight-strong: 500;
+    /* Color declarations */
+    --primary-orange: #eb9d3f;
+    --primary-purple: #8118b0;
+    --primary-red: #f12727;
+    --primary-navy: #002851;
+    --background-purple: #e6bafa;
+    --background-orange: #fad4a7;
+    --background-blue: #27b8f1;
+    --background-red: #f56363;
+    --white: white;
+    --white75: rgba(255, 255, 255, 0.75);
+    --alpha70: 0.7;
+    color: black;
+    margin: 0px;
+}
+
+/* STRUCTURAL STYLES */
+body {
+font-family: var(--main-font);
+font-weight: var(--font-weight-light);
+background-color: var(--white);
+padding: 0px;
+margin: 0px;
+}
+
+/* SEMANTIC STYLES */
+ button{
+    margin: auto;
+    padding: 3px 16px;
+    background-color: var(--primary-purple);
+    border: 0px;
+    margin-top: 9px;
+    color: white;
+    margin-left: 112px;
+ }
+ label{
+    display: inline-block;
+    width: 100px;
+    margin-right: 6px;
+    text-align: right;
+    font-weight: 400;
+ }
+
+/* CLASS AND ID STYLES */
+ #sign-in {
+    background-color: var(--background-blue);
+    margin: auto;
+    width: 400px;
+    margin-top: 4rem;
+    padding: 2rem;
+ }

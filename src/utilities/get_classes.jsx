@@ -8,13 +8,13 @@ const GetAllClasses = () => {
 
     const fetchData = async() =>{
         const response =
-        await axios.get("http://127.0.0.1:8080/classes")
+        await axios.get("http://127.0.0.1:3500/classes")
         setClasses(response.data)
     }
     useEffect(() => {
         fetchData()
     }, []);
-    // console.log(classes)
+    
     const displayCourses = () => classes.map(function(course){
         return(
             <div key={course.id} className="featured-classes">
@@ -22,7 +22,7 @@ const GetAllClasses = () => {
                     <h1>{course.class_name}</h1>
                 </div>
                 <div className="featured-instructor">
-                    <img className="avatar" src={`images/${course.avatar}`} alt={course.full_name} />
+                    <img className="avatar" src={`images/${course.photo}`} alt={course.full_name} />
                     <p>{course.full_name}</p>
                     <p>Instructor</p>
                 </div>

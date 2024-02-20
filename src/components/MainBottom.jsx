@@ -9,7 +9,6 @@ const MainBottom = () => {
                 <p>Playhouse Theatre Academy is dedicated to offering professional theatre programs for emerging artists of all ages and abilities. All students will learn from expert faculty who will share their exceptional abilities and love of theatre. Managed by Playhouse Theatre Group, Inc., Playhouse Theatre Academy is able to provide access to professional artists, productions and opportunities through our affiliation with Playhouse on Park. Whether your goal is to be a professional actor or to explore your imagination and creativity in a new way, the Playhouse Theatre Academy is a home for quality theatre instruction.</p>
 
                 <blockquote>Need-based scholarships are available! To learn more, please email Education@playhousetheatregroup.org</blockquote>
-
             <h2>Multiple Locations</h2>
             <p>Education is offered in multiple locations, dependent on scheduling availability. In addition to Playhouse on Park, we conduct classes as Simsmore Square in Simsbury, CT and the 224 Ecospace in Hartford, CT. Learn more about our locations.</p>
             </div>
