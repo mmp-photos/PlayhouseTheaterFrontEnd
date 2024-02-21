@@ -25,7 +25,7 @@ const SignIn = ({ setSignedIn }) => {
             password: values.password
         };
         try {
-            const response = await axios.post("http://127.0.0.1:3500/auth/", loginData);
+            const response = await axios.post(import.meta.env.VITE_REACT_API_SIGNIN_URL, loginData);
             console.log(response.data)
             if(response.status === 200) {
                 console.log(`Response Status is: ${response.status}`)
