@@ -26,7 +26,8 @@ const SignIn = ({ setSignedIn }) => {
         };
         try {
             const response = await axios.post(import.meta.env.VITE_REACT_API_SIGNIN_URL, loginData, {
-                headers: {} // Empty headers object
+                headers: {}, // Empty headers object
+                withCredentials: true // Set withCredentials to true
             });
             console.log(response.data);
             if (response.status === 200) {
