@@ -5,7 +5,7 @@ const Nav = () => {
     return(
         <nav>
             <ul>
-                <li><Link to={"/admin"}>Admin</Link></li>
+                <li><Link to={"/backstage"}>Admin</Link></li>
                 <li>Home</li>
                 <li>Programs</li>
                 <li>Our Other Sites</li>
