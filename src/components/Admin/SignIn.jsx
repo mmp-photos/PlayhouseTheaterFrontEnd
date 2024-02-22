@@ -19,16 +19,18 @@ const SignIn = ({ setSignedIn }) => {
 
 
     const handleSubmit = async (values, { setSubmitting }) => {
-        console.log(`Login form submitted`)
+        console.log(`Login form submitted`);
         let loginData = {
             email: values.email,
             password: values.password
         };
         try {
-            const response = await axios.post(import.meta.env.VITE_REACT_API_SIGNIN_URL, loginData);
-            console.log(response.data)
-            if(response.status === 200) {
-                console.log(`Response Status is: ${response.status}`)
+            const response = await axios.post(import.meta.env.VITE_REACT_API_SIGNIN_URL, loginData, {
+                headers: {} // Empty headers object
+            });
+            console.log(response.data);
+            if (response.status === 200) {
+                console.log(`Response Status is: ${response.status}`);
                 setSignedIn(true);
             }
         } catch (error) {
@@ -36,7 +38,7 @@ const SignIn = ({ setSignedIn }) => {
         }
         setSubmitting(false);
     };
-    
+        
     return(
         <section id="sign-in">
         <Formik
