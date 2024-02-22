@@ -1,25 +1,31 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import App from './App.jsx';
-import Admin from './components/Admin.jsx';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import Admin from './components/Admin';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />
-  },
-  {
-    path: "/backstage",
-    element: <Admin />
-  },
-]);
+const Main = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/*" element={<App />} /> {/* This route is for the root URL */}
+        <Route path="/backstage" element={<Admin />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
+  );
+};
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const NotFound = () => {
+  return <h1>Page Not Found</h1>;
+};
+
+// Use createRoot to render the Main component
+createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
-)
+    <Main />
+  </React.StrictMode>
+);
+
+export default Main;
