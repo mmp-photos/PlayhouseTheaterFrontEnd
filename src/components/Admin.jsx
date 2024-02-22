@@ -11,6 +11,7 @@ const Admin = () => {
         
     return(
         <main>
+            <h1>New Features</h1>
             {signedIn ? (
                 <Dashboard signedIn={signedIn} setSignedIn={setSignedIn} />
             ) : (
