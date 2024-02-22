@@ -2,7 +2,7 @@
 
 // IMPORTS //
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Homepage from './components/Homepage';
@@ -13,10 +13,11 @@ function App() {
   return (
       <>
       <Header />
-        <Routes>
-            <Route exact path="/" element = {<Homepage />} />
-            <Route exact path="/" element = {<Admin />} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Outlet />}>
+          <Route index element={<Homepage />} />
+        </Route>
+      </Routes>
       <Footer />
       </>
   );

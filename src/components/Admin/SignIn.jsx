@@ -53,7 +53,7 @@ const SignIn = ({ setSignedIn }) => {
                     </div>
                     <div>
                         <label htmlFor="password">Password</label>
-                        <Field type="password" name="password" onChange={handleChange} value={values.password} />
+                        <Field type="password" name="password" autoComplete="current-password" onChange={handleChange} value={values.password} />
                         <ErrorMessage name="password" component="div" />
                     </div>
                     <button type="submit" disabled={isSubmitting}>
