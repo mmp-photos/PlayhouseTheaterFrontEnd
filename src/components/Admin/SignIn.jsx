@@ -7,6 +7,7 @@ import '../../assets/styles/backstage_styles.css';
 const SignIn = ({ setSignedIn }) => {
     const [ auth, setAuth ] = useState(false);
     const [ token, setToken ] = useState();
+    const [ userName, setUserName ] = useState('');
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -29,9 +30,12 @@ const SignIn = ({ setSignedIn }) => {
                 headers: {}, // Empty headers object
                 withCredentials: true // Set withCredentials to true
             });
-            console.log(response.data);
+            console.log(response.data.user);
             if (response.status === 200) {
                 console.log(`Response Status is: ${response.status}`);
+                console.log(`Response username is: ${response.data.user.first_name}`);
+                setUserName(response.data.user.first_name);
+                console.log(`userName in Signin is: ${userName}`)
                 setSignedIn(true);
             }
         } catch (error) {

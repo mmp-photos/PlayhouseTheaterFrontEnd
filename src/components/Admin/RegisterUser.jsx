@@ -49,7 +49,7 @@ const RegisterUser = () => {
     };
 
     return(
-            <main>
+            <>
                 <div>
                 <h1>Registration Form</h1>
                 {userCreated ? <h3>User {createdUser} was added to the Database</h3>
@@ -88,7 +88,7 @@ const RegisterUser = () => {
                 )}
                 </Formik>
                 </div>
-            </main>
+            </>
     )
 };
 
