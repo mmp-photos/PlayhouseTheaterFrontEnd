@@ -1,19 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Change import to use 'Router'
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import Admin from './components/Admin';
+import { Provider } from 'react-redux';
+import { store } from './assets/data/store';
+import DisplayClass from './components/Admin/DisplayClass';
 
 const Main = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/*" element={<App />} /> {/* This route is for the root URL */}
-        <Route path="/backstage" element={<Admin />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+    <React.StrictMode>
+      <Provider store={store}>
+        {/* Use Router instead of BrowserRouter */}
+        <Router>
+          <Routes>
+            <Route path="/" element={<App />} /> {/* This route is for the root URL */}
+            <Route path="/backstage" element={<Admin />} />
+            <Route path="/backstage/course_details/:classId" element={<DisplayClass />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Router>
+      </Provider>
+    </React.StrictMode>
   );
 };
 
@@ -27,5 +35,3 @@ createRoot(document.getElementById('root')).render(
     <Main />
   </React.StrictMode>
 );
-
-export default Main;

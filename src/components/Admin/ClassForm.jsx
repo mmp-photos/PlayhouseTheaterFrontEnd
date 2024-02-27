@@ -1,16 +1,27 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useState } from 'react-redux';
 import { setUser } from '../../features/user/userSlice';
 import * as Yup from 'yup';
 import axios from 'axios';
 
-const SignIn = () => {
-    const dispatch = useDispatch();
 
+const SignIn = ({ classID }) => {
+    const dispatch = useDispatch();
+    const [ editClass, setEditClass ] = useState(false)
+    const { userId, firstName } = useSelector((state) => state.user);
+    
     const validationSchema = Yup.object().shape({
-        email: Yup.string().email().required('Please enter a valid email'),
-        password: Yup.string().required('No password provided.')
+        className: Yup.string().required('Please enter a name for the class'),
+        classDescription: Yup.string().required('Please enter a class description.'),
+        classInstructor: Yup.string().required('Please enter a class description.'),
+        classLink: Yup.string().required('Please enter a class description.'),
+        classTerm: Yup.string().required('Please enter a class description.'),
+        classLocation: Yup.string().required('Please enter a class description.'),
+        classAudience: Yup.string().required('Please enter a class description.'),
+        classCost: Yup.string().required('Please enter a class description.'),
+        classRegistration: Yup.string().required('Please enter a class description.'),
+        classStatus: Yup.string().required('Please enter a class description.')
     });
 
     const handleSubmit = async (values, { setSubmitting }) => {
@@ -26,7 +37,7 @@ const SignIn = () => {
                     firstName: response.data.user.first_name
                 }
                 dispatch(setUser(userData)); // Dispatch action to store user data
-                localStorage.setItem('signedIn', 'true');
+                setSignedIn(true); // Assuming setSignedIn is a function to update the signed-in state
             }
         } catch (error) {
             console.error("Error during form submission:", error);

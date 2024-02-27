@@ -3,26 +3,35 @@ import axios from 'axios';
 
 const GetAllClasses = () => {
     const [classes, setClasses] = useState([]);
-    const [ error, setError ] = useState()
-    const [ id, setID ] = useState(152);
+    const [error, setError] = useState();
+    const [id, setID] = useState(152);
 
-    const fetchData = async() =>{
-        const response =
-        await axios.get("http://127.0.0.1:3500/classes")
-        setClasses(response.data)
-    }
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(import.meta.env.VITE_REACT_APP_BASE_URL + "classes");
+            setClasses(response.data);
+            console.log(response.data)
+        } catch (error) {
+            setError(error);
+        }
+    };
+
     useEffect(() => {
-        fetchData()
+        fetchData();
     }, []);
-    
-    const displayCourses = () => classes.map(function(course){
-        return(
+
+    const displayCourses = () => {
+        console.log(classes); // Log the classes array
+        if (!Array.isArray(classes)) {
+            return <div>No classes available</div>;
+        }
+        return classes.map(course => (
             <div key={course.id} className="featured-classes">
                 <div className="featured-class-name">
                     <h1>{course.class_name}</h1>
                 </div>
                 <div className="featured-instructor">
-                    <img className="avatar" src={`images/${course.photo}`} alt={course.full_name} />
+                    <img className="avatar" src={`${import.meta.env.VITE_REACT_APP_BASE_URL}images/headshots/${course.person_photo}`} alt={course.full_name} />
                     <p>{course.full_name}</p>
                     <p>Instructor</p>
                 </div>
@@ -41,14 +50,15 @@ const GetAllClasses = () => {
                     </dl>
                 </div>
             </div>
-        )
-    });
-
-    return(
+        ));
+    };
+    
+    
+    return (
         <>
-        {displayCourses()}
+            {displayCourses()}
         </>
-    )
+    );
 };
 
-export default GetAllClasses
+export default GetAllClasses;
