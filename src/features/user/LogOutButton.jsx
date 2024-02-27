@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 const LogOutButton = () => {
     const dispatch = useDispatch();
     const { userId, firstName, signedIn } = useSelector((state) => state.user);
-
-    console.log(signedIn);
     
     const handleLogOut = () => {
         console.log(`Signing out of user account`);

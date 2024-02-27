@@ -9,11 +9,11 @@ const AllClasses = () => {
         const response =
         await axios.get(`http://127.0.0.1:3500/classes/`)
         setClasses(response.data)
-        console.log(response.data)
+        // console.log(response.data)
     }
     useEffect(() => {
         fetchData()
-        console.log(classes)
+        // console.log(classes)
     }, []);
     const renderClassNames = () => {
         return (
@@ -27,7 +27,9 @@ const AllClasses = () => {
                         <Link to={{pathname: `/backstage/course_details/${course.class_id}`}}>
                             <i className="fa-solid fa-magnifying-glass"></i>
                         </Link>
+                        <Link to={{pathname: `/backstage/update_class/${course.class_id}`}}>
                             <i className="fa-regular fa-pen-to-square"></i>
+                        </Link>
                             <i className="fa-solid fa-trash-can"></i>
                         </td>
                         

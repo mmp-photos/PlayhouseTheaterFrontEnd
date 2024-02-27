@@ -1,68 +1,61 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useDispatch, useState } from 'react-redux';
-import { setUser } from '../../features/user/userSlice';
-import * as Yup from 'yup';
+import React, { useEffect, useState } from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import * as Yup from 'yup';
 
+const ClassForm = () => {
+    const [course, setCourse] = useState([]);
+    const { classId } = useParams();
 
-const SignIn = ({ classID }) => {
-    const dispatch = useDispatch();
-    const [ editClass, setEditClass ] = useState(false)
-    const { userId, firstName } = useSelector((state) => state.user);
-    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                if (classId) {
+                    const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BASE_URL}classes/${classId}`);
+                    setCourse(response.data);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+    }, [classId]);
+
+    if (course.length === 0) {
+        return <div>Loading...</div>; // Or any other loading indicator
+    }
+
+    const startingValues = { className: course[0].class_name };
+
     const validationSchema = Yup.object().shape({
         className: Yup.string().required('Please enter a name for the class'),
         classDescription: Yup.string().required('Please enter a class description.'),
-        classInstructor: Yup.string().required('Please enter a class description.'),
-        classLink: Yup.string().required('Please enter a class description.'),
-        classTerm: Yup.string().required('Please enter a class description.'),
-        classLocation: Yup.string().required('Please enter a class description.'),
-        classAudience: Yup.string().required('Please enter a class description.'),
-        classCost: Yup.string().required('Please enter a class description.'),
-        classRegistration: Yup.string().required('Please enter a class description.'),
-        classStatus: Yup.string().required('Please enter a class description.')
     });
 
     const handleSubmit = async (values, { setSubmitting }) => {
-        console.log(`Submit button was clicked`)
+        console.log('Submit button was clicked', values);
         try {
-            const response = await axios.post(import.meta.env.VITE_REACT_API_SIGNIN_URL, values, {
-                headers: {}, // Empty headers object
-                withCredentials: true // Set withCredentials to true
-            });
-            if (response.status === 200) {
-                const userData = {
-                    userId: response.data.user_id,
-                    firstName: response.data.user.first_name
-                }
-                dispatch(setUser(userData)); // Dispatch action to store user data
-                setSignedIn(true); // Assuming setSignedIn is a function to update the signed-in state
-            }
+            // Your form submission logic
         } catch (error) {
-            console.error("Error during form submission:", error);
+            console.error('Error during form submission:', error);
         }
         setSubmitting(false);
     };
-    
+
     return (
-        <section id="sign-in">
+        <section>
             <Formik
-                initialValues={{ email: '', password: '' }}
+                initialValues={startingValues}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
             >
-                {({ isSubmitting }) => (
+                {({ values, isSubmitting }) => (
                     <Form>
                         <div>
-                            <label htmlFor="email">Email</label>
-                            <Field type="email" name="email" autoComplete="username" />
-                            <ErrorMessage name="email" component="div" />
-                        </div>
-                        <div>
-                            <label htmlFor="password">Password</label>
-                            <Field type="password" name="password" autoComplete="current-password" />
-                            <ErrorMessage name="password" component="div" />
+                            <label htmlFor="className">Class Name:</label>
+                            <Field type="text" name="className" />
+                            <ErrorMessage name="className" />
                         </div>
                         <button type="submit" disabled={isSubmitting}>
                             Submit
@@ -74,4 +67,4 @@ const SignIn = ({ classID }) => {
     );
 };
 
-export default SignIn;
+export default ClassForm;

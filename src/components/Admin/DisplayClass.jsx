@@ -9,7 +9,7 @@ const DisplayClass = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:3500/classes/${classId}`);
+                const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BASE_URL}classes/${classId}`);
                 setCourse(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -17,7 +17,7 @@ const DisplayClass = (props) => {
         };
         fetchData();
     }, [classId]);
-
+    console.log(course);
     return(
         <section>
             {course.map((course, index) => (
