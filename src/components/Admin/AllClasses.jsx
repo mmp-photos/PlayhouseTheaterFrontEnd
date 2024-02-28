@@ -17,6 +17,7 @@ const AllClasses = () => {
     }, []);
     const renderClassNames = () => {
         return (
+            <>
             <table>
                 <tbody>
                 {classes.map((course, index) => (
@@ -37,6 +38,8 @@ const AllClasses = () => {
                 ))}
                 </tbody>
             </table>
+            <Link to="/backstage/update_class/new"><button>Add New Class</button></Link>
+            </>
         )
     };
 
