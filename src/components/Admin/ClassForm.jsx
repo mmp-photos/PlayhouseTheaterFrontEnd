@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import * as Yup from 'yup';
 
@@ -12,7 +13,9 @@ const ClassForm = () => {
     const [term, setTerm] = useState([]);
     const [status, setStatus] = useState([]);
     const { classId } = useParams();
+    const { userId, firstName, signedIn } = useSelector((state) => state.user);
 
+    console.log(`User id: ${userId} and first name is ${firstName}`);
     if(classId != 'new'){
         useEffect(() => { // Get Class Data by ClassId
             const fetchData = async () => {
@@ -63,17 +66,19 @@ const ClassForm = () => {
                             classTerm: '',
                             classAudience: '',
                             classLink: '',
+                            classCreatedBy: userId,
                             classLocation: '',
                             classInstructor: ''
         };
     } else {
         startingValues = {  className: course[0].class_name,
                             classCost: course[0].class_cost,
-                            // classRegistration: class_registration_status,
+                            classRegistration: '',
                             classDescription: course[0].class_description,
                             classTerm: course[0].class_term,
                             classAudience: course[0].class_audience,
                             classLink: course[0].class_enrollment_link,
+                            classCreatedBy: userId,
                             classLocation: course[0].location_id,
                             classInstructor: course[0].person_id
         };
@@ -135,9 +140,14 @@ const ClassForm = () => {
                         </div>
                         <div>
                             <label htmlFor="classRegistration">Register for Class:</label>
-                            Yes: <Field type="radio" name="classRegistration" value="True"/>
-                            &nbsp;&nbsp;
-                            No: <Field type="radio" name="classRegistration" value="False"/>
+                            <label>
+                                <Field type="radio" name="classRegistration" value="true" />
+                                Yes
+                            </label>
+                            <label>
+                                <Field type="radio" name="classRegistration" value="false" />
+                                No
+                            </label>
                         </div>
                         <div>
                             <label htmlFor="classLink">Class Enrollment:</label>

@@ -22,11 +22,10 @@ const SignIn = () => {
             });
             if (response.status === 200) {
                 const userData = {
-                    userId: response.data.user_id,
+                    userId: response.data.user.user_id,
                     firstName: response.data.user.first_name
                 }
-                dispatch(setUser(userData)); // Dispatch action to store user data
-                localStorage.setItem('signedIn', 'true');
+                dispatch(setUser(userData));
             }
         } catch (error) {
             console.error("Error during form submission:", error);

@@ -21,7 +21,7 @@ const AllClasses = () => {
             <table>
                 <tbody>
                 {classes.map((course, index) => (
-                    <tr key={index}>
+                    <tr key={course.class_id}>
                         <td>{course.class_term}</td>
                         <td>{course.class_name}</td>
                         <td>

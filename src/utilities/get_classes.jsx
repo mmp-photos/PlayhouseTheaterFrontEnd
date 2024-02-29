@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const GetAllClasses = () => {
+const GetAllClasses = ( { featured , display } ) => {
     const [classes, setClasses] = useState([]);
     const [error, setError] = useState();
     const [id, setID] = useState(152);
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(import.meta.env.VITE_REACT_APP_BASE_URL + "classes");
+            // if(featured === 'TRUE'){
+                // const response = await axios.get(import.meta.env.VITE_REACT_APP_BASE_URL + "classes/featured");
+            //     console.log(`Featured classes only`);
+            // } else {
+                const response = await axios.get(import.meta.env.VITE_REACT_APP_BASE_URL + "classes");
+            //     console.log(`All classes`);
+            // // }
             setClasses(response.data);
             console.log(response.data)
         } catch (error) {
@@ -26,7 +32,7 @@ const GetAllClasses = () => {
             return <div>No classes available</div>;
         }
         return classes.map(course => (
-            <div key={course.id} className="featured-classes">
+            <div key={course.class_id} className="featured-classes">
                 <div className="featured-class-name">
                     <h1>{course.class_name}</h1>
                 </div>
