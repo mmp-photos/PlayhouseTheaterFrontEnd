@@ -8,8 +8,9 @@ import '../assets/styles/backstage_styles.css';
 const Admin = () => {
     const [ token, setToken ] = useState();
     const { userId, firstName, signedIn } = useSelector((state) => state.user);
+    const [ staySignedIn, setStaySignedIn ] = useState();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+    
     useEffect(() => {
         // Check if the user is signed in
         const storedSignedIn = localStorage.getItem('signedIn');

@@ -11,26 +11,32 @@ const ClassForm = () => {
     const [instructors, setInstructors] = useState([]);
     const [audience, setAudience] = useState([]);
     const [term, setTerm] = useState([]);
+    const [featured, setFeatured] = useState(false);
+    const [isFeatured, setIsFeatured] = useState();
     const [status, setStatus] = useState([]);
     const { classId } = useParams();
     const { userId, firstName, signedIn } = useSelector((state) => state.user);
 
     console.log(`User id: ${userId} and first name is ${firstName}`);
-    if(classId != 'new'){
-        useEffect(() => { // Get Class Data by ClassId
+    useEffect(() => {
+        if(classId != 'new'){
             const fetchData = async () => {
                 try {
-                    if (classId) {
-                        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BASE_URL}classes/${classId}`);
-                        setCourse(response.data);
+                    const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BASE_URL}classes/${classId}`);
+                    setCourse(response.data);
+                    if (response.data.length > 0 && response.data[0].class_featured === 'TRUE') {
+                        setFeatured(true);
+                    } else {
+                        setFeatured(false);
                     }
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
             };
             fetchData();
-        }, [classId]);
-    }
+        }
+    }, [classId]);
+
     useEffect(() => {
         const fetchData = async () => {
                 axios.get(`${import.meta.env.VITE_REACT_APP_BASE_URL}api/form_data`)
@@ -52,10 +58,6 @@ const ClassForm = () => {
     if (locations.length === 0 || instructors.length === 0) {
         return <div>Loading...</div>; // Or any other loading indicator
     }
-    // let class_registration_status = "False";
-    // if(course[0].class_registration === 0){
-    //     class_registration_status = "True";
-    // }
     
     let startingValues = {};
     if(classId == "new"){
@@ -67,6 +69,7 @@ const ClassForm = () => {
                             classAudience: '',
                             classLink: '',
                             classCreatedBy: userId,
+                            classFeatured: featured,
                             classLocation: '',
                             classInstructor: ''
         };
@@ -79,6 +82,7 @@ const ClassForm = () => {
                             classAudience: course[0].class_audience,
                             classLink: course[0].class_enrollment_link,
                             classCreatedBy: userId,
+                            classFeatured: featured,
                             classLocation: course[0].location_id,
                             classInstructor: course[0].person_id
         };
@@ -111,13 +115,33 @@ const ClassForm = () => {
         setSubmitting(false);
     };
 
+    let determineFeatureStatus = () => {
+        if(course[0].class_featured === 'TRUE'){
+            return(true);
+        } else{
+            return(false);
+        }
+    }
+
     return (
         <section>
             {classId == "new" ? <h1>Add a Class</h1>
                               : <h1>Update Class</h1>
             }
             <Formik
-                initialValues={startingValues}
+                initialValues={{
+                    className: classId === "new" ? "" : course[0]?.class_name || "",
+                    classCost: classId === "new" ? "" : course[0]?.class_cost || "",
+                    classRegistration: classId === "new" ? "" : "",
+                    classDescription: classId === "new" ? "" : course[0]?.class_description || "",
+                    classTerm: classId === "new" ? "" : course[0]?.class_term || "",
+                    classAudience: classId === "new" ? "" : course[0]?.class_audience || "",
+                    classLink: classId === "new" ? "" : course[0]?.class_enrollment_link || "",
+                    classCreatedBy: userId,
+                    classLocation: classId === "new" ? "" : course[0]?.location_id || "",
+                    classInstructor: classId === "new" ? "" : course[0]?.person_id || "",
+                    classFeatured: classId === "new" ? false : course[0]?.class_featured || false
+                }}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
             >
@@ -133,6 +157,13 @@ const ClassForm = () => {
                             <Field as="textarea" rows="12" cols="40" name="classDescription" />
                             <ErrorMessage name="classDescription" />
                         </div>
+
+                        <button type="submit" onClick={() => setFeatured(!featured)}
+                                style={{backgroundColor: featured ? "green" : "red", marginBottom: "16px"}}
+                                disabled={isSubmitting}>
+                            Featured Class
+                        </button>
+                        
                         <div>
                             <label htmlFor="classCost">Class Cost:</label>
                             <Field type="text" name="classCost" />
@@ -159,7 +190,7 @@ const ClassForm = () => {
                             <Field as="select" name="classTerm">
                                 <option value="">Select a term</option>
                                 {term.map((term) => { return(<option key={term.term_id} value={term.term_id}>{term.term_name}</option>)})}
-                            </Field>
+                            </Field> <button className="circle-button">+</button>
                             <ErrorMessage name="classTerm" />
                         </div>
                         <div>

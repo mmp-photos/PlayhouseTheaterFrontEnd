@@ -41,21 +41,21 @@ const SignIn = () => {
                 onSubmit={handleSubmit}
             >
                 {({ isSubmitting }) => (
-                    <Form>
-                        <div>
-                            <label htmlFor="email">Email</label>
-                            <Field type="email" name="email" autoComplete="username" />
-                            <ErrorMessage name="email" component="div" />
-                        </div>
-                        <div>
-                            <label htmlFor="password">Password</label>
-                            <Field type="password" name="password" autoComplete="current-password" />
-                            <ErrorMessage name="password" component="div" />
-                        </div>
-                        <button type="submit" disabled={isSubmitting}>
-                            Submit
-                        </button>
-                    </Form>
+                    <Form style={{display: "block", backgroundColor: '#27b8f1', padding: '2rem'}}>
+                    <div>
+                        <label style={{textAlign: "right", display: "inline-block", marginLeft: '0px'}} htmlFor="email">Email</label>
+                        <Field type="email" name="email" autoComplete="username" />
+                        <ErrorMessage name="email" component="div" />
+                    </div>
+                    <div>
+                        <label style={{textAlign: "right", display: "inline-block", marginLeft: '0px'}} htmlFor="password">Password</label>
+                        <Field type="password" name="password" autoComplete="current-password" />
+                        <ErrorMessage name="password" component="div" />
+                    </div>
+                    <button type="submit" disabled={isSubmitting}>
+                        Submit
+                    </button>
+                </Form>
                 )}
             </Formik>
         </section>

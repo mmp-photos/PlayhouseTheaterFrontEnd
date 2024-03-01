@@ -5,8 +5,8 @@ import LogOutButton from '../../features/user/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Dashboard = ({ setSignedIn, userName }) => {
-    const { userId, firstName } = useSelector((state) => state.user);
-
+    const { userId, firstName, signedIn } = useSelector((state) => state.user);
+    console.log(signedIn);
     const handleLogout = () => {
         console.log(`Logout clicked`)
         setSignedIn(false)

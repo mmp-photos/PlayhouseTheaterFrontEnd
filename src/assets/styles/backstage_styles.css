@@ -20,7 +20,7 @@
     --primary-navy: #002851;
     --background-purple: #e6bafa;
     --background-orange: #fad4a7;
-    --background-blue: #27b8f1;
+    --background-blue: #;
     --background-red: #f56363;
     --white: white;
     --white75: rgba(255, 255, 255, 0.75);
@@ -48,6 +48,12 @@ margin: 0px;
     color: white;
     margin-left: 112px;
  }
+ form{
+   padding-left: 12rem;
+ }
+ form div{
+   margin-bottom: 1rem;
+ }
  label{
     display: inline-block;
     width: 100px;
@@ -55,24 +61,16 @@ margin: 0px;
     text-align: right;
     font-weight: 400;
  }
-
-/* CLASS AND ID STYLES */
- #sign-in {
-    background-color: var(--background-blue);
-    margin: auto;
-    width: 400px;
-    margin-top: 4rem;
-    padding: 2rem;
- }
-
- form{
+ section {
    width: 85%;
    margin: auto;
-   margin-top: 55px;
+   text-align: left;
+   margin-top: 65px;
  }
- form div{
-   margin-bottom: 16px;
- }
- form label{
-   width: 200px;
- }
+/* CLASS AND ID STYLES */
+#sign-in{
+   display: block;
+   margin: auto;
+   text-align: center;
+   width: 350px;
+}

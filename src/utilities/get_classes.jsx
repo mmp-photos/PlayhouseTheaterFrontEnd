@@ -3,20 +3,15 @@ import axios from 'axios';
 
 const GetAllClasses = ( { featured , display } ) => {
     const [classes, setClasses] = useState([]);
+    const [featuredClasses, setFeaturedClasses] = useState([]);
     const [error, setError] = useState();
     const [id, setID] = useState(152);
 
     const fetchData = async () => {
         try {
-            // if(featured === 'TRUE'){
-                // const response = await axios.get(import.meta.env.VITE_REACT_APP_BASE_URL + "classes/featured");
-            //     console.log(`Featured classes only`);
-            // } else {
-                const response = await axios.get(import.meta.env.VITE_REACT_APP_BASE_URL + "classes");
-            //     console.log(`All classes`);
-            // // }
+            const response = await axios.get(import.meta.env.VITE_REACT_APP_BASE_URL + "classes");
             setClasses(response.data);
-            console.log(response.data)
+            setFeaturedClasses(response.data.filter(function (el) {return el.class_featured === "TRUE"}));
         } catch (error) {
             setError(error);
         }
@@ -26,12 +21,23 @@ const GetAllClasses = ( { featured , display } ) => {
         fetchData();
     }, []);
 
+    if(classes.length === 0 || featuredClasses.length === 0) {
+        return <div>Loading...</div>
+    }
+
+    const arrayIndex = 0
+    const course = featuredClasses[arrayIndex];
+
     const displayCourses = () => {
-        console.log(classes); // Log the classes array
         if (!Array.isArray(classes)) {
             return <div>No classes available</div>;
         }
-        return classes.map(course => (
+        const currentIndex = 0;
+        const course = classes[currentIndex];
+        
+        return (
+            <>
+            <button>previous</button>
             <div key={course.class_id} className="featured-classes">
                 <div className="featured-class-name">
                     <h1>{course.class_name}</h1>
@@ -56,9 +62,10 @@ const GetAllClasses = ( { featured , display } ) => {
                     </dl>
                 </div>
             </div>
-        ));
+            <button> next </button>
+            </>
+        );
     };
-    
     
     return (
         <>
@@ -66,5 +73,4 @@ const GetAllClasses = ( { featured , display } ) => {
         </>
     );
 };
-
 export default GetAllClasses;
