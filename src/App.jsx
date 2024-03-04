@@ -3,7 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Homepage from './components/Homepage';
-import Admin from './components/Admin';
+import DisplayClass from './components/Admin/DisplayClass';
+import ClassForm from './components/Admin/ClassForm';
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
       <Header />
       <Routes>
         <Route exact path="*" element={<Homepage />} />
+        <Route path="/backstage/course_details/:classId" element={<DisplayClass />} />
+        <Route path="/backstage/update_class/:classId" element={<ClassForm />} />
         {/* Additional routes for the App */}
       </Routes>
       <Footer />

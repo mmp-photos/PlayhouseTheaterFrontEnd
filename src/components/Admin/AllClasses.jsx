@@ -18,13 +18,13 @@ const AllClasses = () => {
     const renderClassNames = () => {
         return (
             <>
-            <table>
+            <h2>Current Classes</h2>
+            <table style={{width: "800px"}}>
                 <tbody>
                 {classes.map((course, index) => (
                     <tr key={course.class_id}>
-                        <td>{course.class_term}</td>
-                        <td>{course.class_name}</td>
-                        <td>
+                        <td style={{width: "80rem"}}>{course.class_name}</td>
+                        <td style={{width: "80rem"}}>
                         <Link to={{pathname: `/backstage/course_details/${course.class_id}`}}>
                             <i className="fa-solid fa-magnifying-glass"></i>
                         </Link>

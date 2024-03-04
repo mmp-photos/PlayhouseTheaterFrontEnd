@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AllClasses from './AllClasses'
 import Counter from '../../features/counter/Counter';
-import LogOutButton from '../../features/user/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Dashboard = ({ setSignedIn, userName }) => {
@@ -13,8 +12,7 @@ const Dashboard = ({ setSignedIn, userName }) => {
     }
     return(
         <section>
-            <h1>Welcome {firstName}!</h1>
-            <LogOutButton />
+            {/* <h1>Welcome {firstName}!</h1> */}
             <AllClasses />
         </section>
     )

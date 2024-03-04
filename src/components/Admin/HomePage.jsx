@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import SignIn from './Admin/SignIn';
-import Dashboard from './Admin/Dashboard';
+import SignIn from './SignIn';
+import Dashboard from './Dashboard';
+import Header from './Header';
 import { useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
 
-// import '../assets/styles/backstage_styles.css';
-import Header from './Admin/Header';
-import HomePage from './Admin/HomePage';
-
-const Admin = () => {
+const HomePage = () => {
     const [ token, setToken ] = useState();
     const { userId, firstName, signedIn } = useSelector((state) => state.user);
     const [ staySignedIn, setStaySignedIn ] = useState();
@@ -24,14 +20,15 @@ const Admin = () => {
 
     return(
         <>
-        <Header />
-            <Routes>
-            <Route exact path="*" element={<HomePage />} />
-            <Route exact path="class_form" element={<classForm />} />
-                {/* Additional routes for the App */}
-            </Routes>
+        <main>
+        {signedIn ? (
+            <Dashboard />
+        ) : (
+            <SignIn />
+        )}
+        </main>
         </>
     )
 };
 
-export default Admin;
+export default HomePage;

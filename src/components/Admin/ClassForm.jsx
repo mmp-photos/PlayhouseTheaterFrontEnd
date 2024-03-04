@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import * as Yup from 'yup';
+import Header from './Header';
 
 const ClassForm = () => {
     const [course, setCourse] = useState([]);
@@ -12,6 +13,7 @@ const ClassForm = () => {
     const [audience, setAudience] = useState([]);
     const [term, setTerm] = useState([]);
     const [featured, setFeatured] = useState(false);
+    const [registration, setRegistration] = useState('');
     const [isFeatured, setIsFeatured] = useState();
     const [status, setStatus] = useState([]);
     const { classId } = useParams();
@@ -28,6 +30,11 @@ const ClassForm = () => {
                         setFeatured(true);
                     } else {
                         setFeatured(false);
+                    }
+                    if (response.data.length > 0 && response.data[0].registration === '0') {
+                        setRegistration(0);
+                    } else {
+                        setRegistration(1);
                     }
                 } catch (error) {
                     console.error('Error fetching data:', error);
@@ -121,9 +128,20 @@ const ClassForm = () => {
         } else{
             return(false);
         }
-    }
+    };
+    const registrationStatus = () => {
+        if(registration == 0){
+            setRegistration(1)
+        }
+        else if(registration == 1){
+            setRegistration(0)
+        }
+        console.log(`The value of the registration is ${registration}`)
+    };
 
     return (
+        <>
+        <Header />
         <section>
             {classId == "new" ? <h1>Add a Class</h1>
                               : <h1>Update Class</h1>
@@ -149,7 +167,7 @@ const ClassForm = () => {
                     <Form>
                         <div>
                             <label htmlFor="className">Class Name:</label>
-                            <Field type="text" name="className" />
+                            <Field type="text" name="className" style = {{width: 350}}/>
                             <ErrorMessage name="className" />
                         </div>
                         <div>
@@ -157,40 +175,35 @@ const ClassForm = () => {
                             <Field as="textarea" rows="12" cols="40" name="classDescription" />
                             <ErrorMessage name="classDescription" />
                         </div>
-
+                        <div>
+                            <label htmlFor="classLink">Class Enrollment:</label>
+                            <Field type="text" name="classLink" style = {{width: 350}}/>
+                            <ErrorMessage name="classLink" />
+                        </div>
                         <button type="submit" onClick={() => setFeatured(!featured)}
                                 style={{backgroundColor: featured ? "green" : "red", marginBottom: "16px"}}
                                 disabled={isSubmitting}>
                             Featured Class
                         </button>
-                        
                         <div>
                             <label htmlFor="classCost">Class Cost:</label>
-                            <Field type="text" name="classCost" />
+                            $ <Field type="text" name="classCost" style = {{width: 60}}/>
                             <ErrorMessage name="className" />
                         </div>
                         <div>
-                            <label htmlFor="classRegistration">Register for Class:</label>
-                            <label>
-                                <Field type="radio" name="classRegistration" value="true" />
-                                Yes
-                            </label>
-                            <label>
-                                <Field type="radio" name="classRegistration" value="false" />
-                                No
-                            </label>
-                        </div>
-                        <div>
-                            <label htmlFor="classLink">Class Enrollment:</label>
-                            <Field type="text" name="classLink" />
-                            <ErrorMessage name="classLink" />
+                            <button type="submit" onClick={() => registrationStatus()}
+                                style={{backgroundColor: registration ? "green" : "red", marginBottom: "16px"}}
+                                disabled={isSubmitting}>
+                            Registration Required
+                            </button>
                         </div>
                         <div>
                             <label htmlFor="classTerm">Class Term:</label>
                             <Field as="select" name="classTerm">
                                 <option value="">Select a term</option>
                                 {term.map((term) => { return(<option key={term.term_id} value={term.term_id}>{term.term_name}</option>)})}
-                            </Field> <button className="circle-button">+</button>
+                            </Field> 
+                            {/* <button className="circle-button">+</button> */}
                             <ErrorMessage name="classTerm" />
                         </div>
                         <div>
@@ -224,6 +237,7 @@ const ClassForm = () => {
                 )}
             </Formik>
         </section>
+        </>
     );
 };
 

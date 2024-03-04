@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../features/user/userSlice';
@@ -7,6 +8,7 @@ import axios from 'axios';
 
 const SignIn = () => {
     const dispatch = useDispatch();
+    const [ loginError, setLoginError ] = useState();
 
     const validationSchema = Yup.object().shape({
         email: Yup.string().email().required('Please enter a valid email'),
@@ -27,12 +29,17 @@ const SignIn = () => {
                 }
                 dispatch(setUser(userData));
             }
+            if (response.status != 200) {
+                console.log(`Response error: ${response.data}`)
+            }
         } catch (error) {
             console.error("Error during form submission:", error);
+            setLoginError('Sign-in Error!')
+            console.log(`loginError from request: ${loginError}`)
         }
         setSubmitting(false);
     };
-    
+    console.log(`loginError: ${loginError}`)
     return (
         <section id="sign-in">
             <Formik
@@ -42,6 +49,7 @@ const SignIn = () => {
             >
                 {({ isSubmitting }) => (
                     <Form style={{display: "block", backgroundColor: '#27b8f1', padding: '2rem'}}>
+                    <h1 style={{textAlign: "left", marginBottom: "16px"}}>Sign In To Update Site</h1>
                     <div>
                         <label style={{textAlign: "right", display: "inline-block", marginLeft: '0px'}} htmlFor="email">Email</label>
                         <Field type="email" name="email" autoComplete="username" />
@@ -52,6 +60,7 @@ const SignIn = () => {
                         <Field type="password" name="password" autoComplete="current-password" />
                         <ErrorMessage name="password" component="div" />
                     </div>
+                    {loginError ? <h4 style={{color: "#8118b0"}} className="error">{loginError}</h4> : null}
                     <button type="submit" disabled={isSubmitting}>
                         Submit
                     </button>
