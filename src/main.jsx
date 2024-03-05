@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from './assets/data/store';
 import DisplayClass from './components/Admin/DisplayClass';
 import ClassForm from './components/Admin/ClassForm';
-import Classes from './components/Classes';
+import Classes from './components/Classes.jsx';
 import './assets/styles/styles.css';
 
 const Main = () => {

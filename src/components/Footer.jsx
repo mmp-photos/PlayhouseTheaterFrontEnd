@@ -3,7 +3,7 @@ const Footer = () => {
     return(
         <footer>
             <div>
-                <img src="../..//images/PTG_logo_white.png" />
+                <img src="../../images/PTG_logo_white.png" />
                 <h4>Playhouse Theatre Group © 2021. All Rights Reserved.</h4>
                 <p>Privacy Notice</p>
                 <p>244 Park Road, West Hartford, CT 06119</p>

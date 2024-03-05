@@ -70,7 +70,7 @@ const GetAllClasses = ( { featured , display } ) => {
                 </div>
                 <div className="featured-class-info">
                     <p className="featured-description">{course.class_description}</p>
-                    <button onClick={() => clickToRegister(course.class_enrollment_link)}>Rgister</button>
+                    <button onClick={() => clickToRegister(course.class_enrollment_link)}>Register</button>
                 </div>
             </div>
         )
