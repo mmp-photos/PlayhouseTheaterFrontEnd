@@ -7,7 +7,8 @@ const Nav = () => {
                 <button className="dropbtn">Classes &nbsp;
                 </button>
                     <div className="dropdown-content">
-                    <a href="#">Programs to come!</a>
+                    <a href="/all_classes">All Classes</a>
+                    <a href="/all_locations">Classes by Location</a>
                 </div>
             </div> 
             <div className="dropdown">
