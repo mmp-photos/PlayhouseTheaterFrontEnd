@@ -89,7 +89,15 @@ footer a:hover {
 footer a:active {
    color: var(--primary-red);
  }
-
+footer img {
+  margin-bottom: 1rem;
+}
+footer h4{
+  margin-bottom: .5rem;
+}
+footer p{
+  line-height:50%;
+}
 /* SEMANTIC STYLES */
  blockquote{
     padding: 3% 10%;
@@ -214,6 +222,62 @@ footer a:active {
    text-decoration: none;
    color: var(--black)
  }
+ #classes-list{
+  width: 85%;
+  margin: auto;
+ }
+ #classes-list h2{
+  background-color: var(--primary-purple);
+  color: var(--white);
+  margin-top: 32px;
+  margin-bottom: 1.5rem;
+  border-style: none;
+  padding: .5rem;
+ }
+.class-container{
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+  "title title"
+  "sidebar  details";
+  width: 95%;
+  margin: auto;
+  margin-bottom: 32px;
+  opacity: 1;
+}
+.class-container h3{
+  font-weight: var(--font-weight-strong);
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+}
+.class-container table{
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+.class-details p{
+  text-align: justify;
+}
+.class-title{
+ grid-area: title;
+}
+.class-sidebar{
+ grid-area: sidebar;
+ text-align: center;
+ padding-top: 9px;
+}
+.class-details{
+ grid-area: details;
+ width: 100%;
+ padding-left: 9px;
+}
+.left-column{
+ padding-left: 0px;
+ padding-right: .5rem;
+ text-align: right;
+ font-size: .85rem;
+ font-weight: 600;
+}
  #social-icons {
     display: flex;
  }

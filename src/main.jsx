@@ -8,6 +8,8 @@ import { store } from './assets/data/store';
 import DisplayClass from './components/Admin/DisplayClass';
 import ClassForm from './components/Admin/ClassForm';
 import Classes from './components/Classes.jsx';
+import AllClassData from './features/classes/AllClassData.jsx';
+import AllLocations from './features/locations/AllLocations.jsx';
 import './assets/styles/styles.css';
 
 const Main = () => {
@@ -19,6 +21,8 @@ const Main = () => {
           <Routes>
             <Route path="/" element={<App />} /> {/* This route is for the root URL */}
             <Route path="/classes/:classId" element={<Classes />} />
+            <Route path="/all_classes" element={<AllClassData />} />
+            <Route path="/all_locations" element={<AllLocations />} />
             <Route path="/backstage" element={<Admin />} />
             <Route path="/backstage/course_details/:classId" element={<DisplayClass />} />
             <Route path="/backstage/update_class/:classId" element={<ClassForm />} />
