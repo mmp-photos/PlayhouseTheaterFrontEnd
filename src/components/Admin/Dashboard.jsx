@@ -12,7 +12,7 @@ const Dashboard = ({ setSignedIn, userName }) => {
     }
     return(
         <section>
-            {/* <h1>Welcome {firstName}!</h1> */}
+            <h1>Welcome {firstName}!</h1>
             <AllClasses />
         </section>
     )
