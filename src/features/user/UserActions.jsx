@@ -18,6 +18,7 @@ export const fetchUserData = () => async (values, { setSubmitting }, dispatch) =
             const userData = {
                 userId: response.data.user_id,
                 firstName: response.data.user.first_name,
+                lastName: response.data.user.first_name,
                 signedIn: true
             }
         }
