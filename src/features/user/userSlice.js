@@ -15,6 +15,7 @@ const userSlice = createSlice({
       const { userId, firstName } = action.payload;
       state.userId = userId;
       state.firstName = firstName;
+      state.lastName = firstName;
       state.signedIn = true;
       // Set other user data here if needed
     },
