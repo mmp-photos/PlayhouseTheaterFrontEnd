@@ -7,7 +7,7 @@ const AllClasses = () => {
 
     const fetchData = async() =>{
         const response =
-        await axios.get(`http://127.0.0.1:3500/classes/`)
+        await axios.get(`${import.meta.env.VITE_REACT_APP_BASE_URL}classes/`)
         setClasses(response.data)
         // console.log(response.data)
     }
