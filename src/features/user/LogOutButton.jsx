@@ -9,13 +9,16 @@ const LogOutButton = () => {
     const handleLogOut = () => {
         console.log(`Signing out of user account`);
         dispatch(setSignedOut(false)); // Dispatch the action to update state
+        window.open("/", "_self");
     };
 
-    return(
-        <button onClick={handleLogOut}>
-            Log Out
-        </button>
-    );
+    if(signedIn){
+        return(
+            <button style={{transform: 'translateY(-15px)', marginLeft: "55px"}} onClick={handleLogOut}>
+                Log Out
+            </button>
+        )
+    }
 };
 
 export default LogOutButton;

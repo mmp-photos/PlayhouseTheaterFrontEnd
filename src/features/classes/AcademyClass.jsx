@@ -1,31 +1,17 @@
 import clickToRegister from '../../utilities/clickToRegister';
+import convertDate from '../../utilities/convertDate';
+import { Link } from 'react-router-dom'; // Change import to use 'Router'
 
 const AcademyClass = (classData) => {
-
-    const convertDate = (dateString) => {
-        const dateOnly = dateString.split('T')[0];
-        const dateParts = dateOnly.split('-');
-        const date = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-        // Get day, month, and year from the Date object
-        const day = date.getDate();
-        const month = date.getMonth() + 1; // Month is zero-based, so we add 1
-        const year = date.getFullYear() % 100; // Get last two digits of the year
-    
-        // Pad day and month with leading zeros if necessary
-        const formattedMonth = String(day).padStart(2, '0');
-        const formattedDay = String(month).padStart(2, '0');
-    
-        // Return formatted date in dd/mm/yy format
-        return `${formattedDay}/${formattedMonth}/${year}`;
-      };
     
       const registrationButton = (url) =>{
         <button onClick={() => clickToRegister(url)}>Register</button>
+    console.log(classData);
     }
-
+    
     return(
             <article className="class-container" key={classData.class_id}>
-            <div className="class-title"><h3>{classData.class_name}</h3></div>
+            <div className="class-title"><h3><Link to={`/classes/${classData.class_id}`}>{classData.class_name}</Link></h3></div>
             <div className="class-sidebar">
             <img className="avatar" src={`${import.meta.env.VITE_REACT_APP_BASE_URL}images/headshots/${classData.person_photo}`} alt={classData.full_name} />
             <p>{classData.person_name}</p>

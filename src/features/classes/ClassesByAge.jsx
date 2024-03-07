@@ -5,13 +5,13 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import AcademyClass from '../classes/AcademyClass'
 
-const AllClassData = () => {
+const ClassesByAge = () => {
   const [classes, setClasses] = useState([]);
   const [error, setError] = useState();
 
   const fetchData = async () => {
       try {
-          const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BASE_URL}classes/location`);
+          const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BASE_URL}classes/age`);
         //   console.log(response.data);
           setClasses(response.data);
       } catch (error) {
@@ -30,7 +30,7 @@ const AllClassData = () => {
   const registrationButton = (url) =>{
     <button onClick={() => clickToRegister(url)}>Register</button>
   }
-
+  console.log(classes)
   return (
     <>
     <Header />
@@ -41,13 +41,13 @@ const AllClassData = () => {
         })}
         {classes.map((classItem, index) => {
           // Render class term if it differs from the previous class term or if it's the first item
-          if (index === 0 || classItem.location_id !== classes[index - 1].location_id) {
+          if (index === 0 || classItem.audience_id !== classes[index - 1].audience_id) {
             return (
-              <React.Fragment key={`term_${classItem.location_id}`}>
-                <h2>{classItem.location_name}</h2>
+              <React.Fragment key={`term_${classItem.audience_id}`}>
+                <h2>{classItem.audience_description}</h2>
                 {/* Render class details for the current term */}
                 {classes
-                  .filter((item) => item.location_id === classItem.location_id)
+                  .filter((item) => item.audience_id === classItem.audience_id)
                   .map((filteredClass) => (
                     AcademyClass(filteredClass)
                   ))}
@@ -62,4 +62,4 @@ const AllClassData = () => {
   )
 };
 
-export default AllClassData
+export default ClassesByAge

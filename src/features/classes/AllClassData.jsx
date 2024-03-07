@@ -25,52 +25,10 @@ const AllClassData = () => {
       fetchData();
   }, []);
 
-  if(classes.length === 0 || featuredClasses.length === 0) {
+  if(classes.length === 0) {
     return <div>Loading...</div>
   }
-  // const dispatch = useDispatch();
-  // const { classes, loading, error } = useSelector((state) => state);
-
-  // useEffect(() => {
-  //   console.log("Fetching classes...");
-  //   dispatch(fetchClasses());
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   console.log("Classes updated:", classes);
-  // }, [classes]);
-
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (error) {
-  //   return <div>Error: {error}</div>;
-  // }
-
-  // console.log(classes);
-
-  const convertDate = (dateString) => {
-    const dateOnly = dateString.split('T')[0];
-    const dateParts = dateOnly.split('-');
-    const date = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-    // Get day, month, and year from the Date object
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // Month is zero-based, so we add 1
-    const year = date.getFullYear() % 100; // Get last two digits of the year
-
-    // Pad day and month with leading zeros if necessary
-    const formattedMonth = String(day).padStart(2, '0');
-    const formattedDay = String(month).padStart(2, '0');
-
-    // Return formatted date in dd/mm/yy format
-    return `${formattedDay}/${formattedMonth}/${year}`;
-  };
-
-  const registrationButton = (url) =>{
-    <button onClick={() => clickToRegister(url)}>Register</button>
-  }
-
+  console.log(classes)
   return (
     <>
     <Header />

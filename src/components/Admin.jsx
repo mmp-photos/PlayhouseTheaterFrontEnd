@@ -4,7 +4,7 @@ import Dashboard from './Admin/Dashboard';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
-// import '../assets/styles/backstage_styles.css';
+import '../assets/styles/backstage_styles.css';
 import Header from './Admin/Header';
 import HomePage from './Admin/HomePage';
 

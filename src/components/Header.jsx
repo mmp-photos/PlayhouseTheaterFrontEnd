@@ -4,7 +4,7 @@ import logo from '../assets/images/PTA_logo.png';
 const Header = () => {
     return(
         <header>
-            <img src={logo} alt='Playhouse Academy Logo' />
+            <a href="/"><img src={logo} alt='Playhouse Academy Logo' /></a>
             <Nav />
         </header>
     )
