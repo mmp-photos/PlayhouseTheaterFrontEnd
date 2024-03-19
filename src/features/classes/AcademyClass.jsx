@@ -13,7 +13,9 @@ const AcademyClass = (classData) => {
             <article className="class-container" key={classData.class_id}>
             <div className="class-title"><h3><Link to={`/classes/${classData.class_id}`}>{classData.class_name}</Link></h3></div>
             <div className="class-sidebar">
-            <img className="avatar" src={`${import.meta.env.VITE_REACT_APP_BASE_URL}images/headshots/${classData.person_photo}`} alt={classData.full_name} />
+            <a href={`/instructor/${classData.person_id}`} >
+                <img className="avatar" src={`${import.meta.env.VITE_REACT_APP_BASE_URL}images/headshots/${classData.person_photo}`} alt={classData.full_name} />
+            </a>
             <p>{classData.person_name}</p>
             </div>
             <div className="class-details">

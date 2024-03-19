@@ -63,7 +63,7 @@ const GetAllClasses = ( { featured , display } ) => {
                     <Link to={{pathname: `classes/${course.class_id}`}}><h1>{course.class_name}</h1></Link>
                 </div>
                 <div className="featured-instructor">
-                    <img className="avatar" src={`${import.meta.env.VITE_REACT_APP_BASE_URL}images/headshots/${course.person_photo}`} alt={course.full_name} />
+                    <Link to={{pathname: `instructor/${course.instructor_id}`}}><img className="avatar" src={`${import.meta.env.VITE_REACT_APP_BASE_URL}images/headshots/${course.person_photo}`} alt={course.full_name} /></Link>
                     <p>{course.full_name}</p>
                     <p><span className="bold">Instructor:</span> <br/>{course.instructor_name}</p>
 

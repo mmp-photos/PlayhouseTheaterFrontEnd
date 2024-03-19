@@ -14,7 +14,7 @@ const AllClassData = () => {
       try {
           const response = await axios.get(import.meta.env.VITE_REACT_APP_BASE_URL + "classes/all_data");
           console.log(response.data);
-          setClasses(response.data);
+          setClasses(response.data.filter(function (el) {return el.current_term === 1}));
           setFeaturedClasses(response.data.filter(function (el) {return el.class_featured === "TRUE"}));
       } catch (error) {
           setError(error);
@@ -42,7 +42,7 @@ const AllClassData = () => {
                 <h2>{classItem.term_name}</h2>
                 {/* Render class details for the current term */}
                 {classes
-                  .filter((item) => item.term_name === classItem.term_name)
+                  .filter((item) => item.term_name === classItem.term_name && item.current_term === 1)
                   .map((filteredClass) => (
                     AcademyClass(filteredClass)
                   ))}

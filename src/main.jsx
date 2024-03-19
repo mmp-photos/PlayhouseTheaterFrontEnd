@@ -11,6 +11,9 @@ import AllClassData from './features/classes/AllClassData.jsx';
 import ClassDetails from './features/classes/ClassDetails.jsx';
 import ClassesByAge from './features/classes/ClassesByAge.jsx';
 import AllLocations from './features/locations/AllLocations.jsx';
+import InstructorsById from './features/instructors/InstructorsById.jsx';
+
+
 import './assets/styles/styles.css';
 
 const Main = () => {
@@ -25,6 +28,7 @@ const Main = () => {
             <Route path="/all_classes" element={<AllClassData />} />
             <Route path="/all_locations" element={<AllLocations />} />
             <Route path="/all_ages" element={<ClassesByAge />} />
+            <Route path="/instructor/:instructorId" element={<InstructorsById />} />
             <Route path="/backstage" element={<Admin />} />
             <Route path="/backstage/course_details/:classId" element={<DisplayClass />} />
             <Route path="/backstage/update_class/:classId" element={<ClassForm />} />
